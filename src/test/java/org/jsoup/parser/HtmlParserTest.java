@@ -495,9 +495,9 @@ public class HtmlParserTest {
     @Test public void handlesUnexpectedMarkupInTables() {
         // whatwg - tests markers in active formatting (if they didn't work, would get in in table)
         // also tests foster parenting
-        String h = "<table><b><tr><td>aaa</td></tr>bbb</table>ccc";
+        String h = "<table>a<b>a<tr><td>aaa</td></tr>bbb</table>ccc";
         Document doc = Jsoup.parse(h);
-        assertEquals("<b></b><b>bbb</b><table><tbody><tr><td>aaa</td></tr></tbody></table><b>ccc</b>", TextUtil.stripNewlines(doc.body().html()));
+        assertEquals("a<b>a</b><b>bbb</b><table><tbody><tr><td>aaa</td></tr></tbody></table><b>ccc</b>", TextUtil.stripNewlines(doc.body().html()));
     }
 
     @Test public void handlesUnclosedFormattingElements() {
